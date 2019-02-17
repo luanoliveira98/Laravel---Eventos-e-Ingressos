@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $listCrumbs = json_encode([
+            ["title"=>"Dashboard", "url"=>""]
+        ]);
+        $countTables = [
+            "events" => 1, 
+            "users"    => 10,
+            "admins"  => 10
+        ];
+        return view('admin/home', compact('listCrumbs', 'countTables'));
     }
 }
