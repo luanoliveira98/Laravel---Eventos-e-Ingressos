@@ -39115,12 +39115,12 @@ var render = function() {
         { staticClass: "col-9" },
         [
           _vm.create && !_vm.modal
-            ? _c("a", { attrs: { href: _vm.create } }, [_vm._v("Create")])
+            ? _c("a", { attrs: { href: _vm.create } }, [_vm._v("Criar")])
             : _vm._e(),
           _vm._v(" "),
           _vm.create && _vm.modal
             ? _c("modal-link-component", {
-                attrs: { type: "link", name: "add", title: "Create", css: "" }
+                attrs: { type: "link", name: "add", title: "Criar", css: "" }
               })
             : _vm._e()
         ],

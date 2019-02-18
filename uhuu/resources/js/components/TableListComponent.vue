@@ -2,8 +2,8 @@
     <div>
         <div class="form-inline mb-2 row">
             <div class="col-9">
-                <a v-if="create && !modal" v-bind:href="create">Create</a>
-                <modal-link-component v-if="create && modal" type="link" name="add" title="Create" css=""></modal-link-component>
+                <a v-if="create && !modal" v-bind:href="create">Criar</a>
+                <modal-link-component v-if="create && modal" type="link" name="add" title="Criar" css=""></modal-link-component>
             </div>
             <div class="form-group">
                 <input type="search" placeholder="Search" class="form-control" v-model="search">
