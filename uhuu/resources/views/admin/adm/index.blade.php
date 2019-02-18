@@ -16,7 +16,7 @@
             </div>
         @endif
 
-        <panel-component title="Lista de Usuários">
+        <panel-component title="Lista de Administradores">
             <crumbs-component v-bind:list="{{$listCrumbs}}"></crumbs-component>
             <table-list-component 
                 v-bind:titles="['#','Name', 'E-mail']"
@@ -31,25 +31,25 @@
         </panel-component>
     </page-component>
 
-    <modal-component name="add" title="Novo Usuário">
+    <modal-component name="add" title="Novo Administrador">
         <form-component id="formAdd" css="" action="{{route('administradores.store')}}" method="post" enctype="" token="{{ csrf_token() }}">
             <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" name="name" id="nameAdd" class="form-control" placeholder="Name" value="{{old('name')}}">
+                <label for="nameAdd">Nome</label>
+                <input type="text" name="name" id="nameAdd" class="form-control" placeholder="Nome Completo" value="{{old('name')}}">
             </div>
             <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="emailAdd">E-mail</label>
                 <input type="email" name="email" id="emailAdd" class="form-control" placeholder="E-mail" value="{{old('email')}}">
             </div>
             <div class="form-group">
-                <label for="admin">Admin</label>
+                <label for="adminAdd">Admin</label>
                 <select name="admin" id="adminAdd" class="form-control">
                     <option value="S" {{(old('admin') && old('admin') == 'S' ? 'selected' : '')}}{{(!old('admin') ? 'selected' : '')}}>Sim</option>
                     <option value="N" {{(old('admin') && old('admin') == 'N' ? 'selected' : '')}}>Não</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="password">Senha</label>
+                <label for="passwordAdd">Senha</label>
                 <input type="password" name="password" id="passwordAdd" class="form-control" value="{{old('password')}}">
             </div>
         </form-component>
@@ -58,25 +58,25 @@
         </span>
     </modal-component>
     
-    <modal-component name="edit" title="Editar Usuário">
+    <modal-component name="edit" title="Editar Administrador">
         <form-component id="formEdit" css="" v-bind:action="'/dashboard/administradores/'+$store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="nameEdit" v-model="$store.state.item.name" class="form-control" placeholder="Name">
+                <label for="nameEdit">Nome</label>
+                <input type="text" name="name" id="nameEdit" v-model="$store.state.item.name" class="form-control" placeholder="Nome Completo">
             </div>
             <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="emailEdit">E-mail</label>
                 <input type="text" name="email" id="emailEdit" v-model="$store.state.item.email" class="form-control" placeholder="E-mail">
             </div>
             <div class="form-group">
-                <label for="admin">Admin</label>
+                <label for="adminEdit">Admin</label>
                 <select name="admin" id="adminEdit" class="form-control" v-model="$store.state.item.admin" >
                     <option value="S">Sim</option>
                     <option value="N">Não</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="passwordEdit">Password</label>
                 <input type="password" name="password" id="passwordEdit" class="form-control">
             </div>
         </form-component>
@@ -84,7 +84,4 @@
             <button class="btn btn-info" form="formEdit">Edit</button>
         </span>
     </modal-component>
-    
-    <modal-component name="detail" v-bind:title="$store.state.item.name">
-        <p>@{{$store.state.item.email}}</p>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 use App\Event;
 
@@ -16,7 +17,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $listCrumbs = json_encode([
+            ["title"=>"Dashboard", "url"=>route('dashboard')],
+            ["title"=>"Lista de Eventos", "url"=>""]
+        ]);
+
+        $listModel = Event::select('id', 'name', 'date')->paginate(10);
+        return view('admin.events.index', compact('listCrumbs', 'listModel'));
     }
 
     /**
@@ -37,7 +44,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $validation = \Validator::make($data,[
+            "name"                      => "required",
+            "description"               => "required",
+            "max_tickets_order"         => "required",
+            "date"                      => "required",
+            "date_end"                  => "required",
+            "time_end"                  => "required",
+            "time_end"                  => "required"
+        ]);
+
+        if($validation->fails()){
+            return redirect()->back()->withErrors($validation)->withInput();
+        }
+
+        $user = auth()->user();
+        $user->event()->create($data);
+        return redirect()->back();
     }
 
     /**
@@ -46,9 +70,9 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        return Event::find($id);
     }
 
     /**
@@ -69,9 +93,26 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $validation = \Validator::make($data,[
+            "name"                      => "required",
+            "description"               => "required",
+            "max_tickets_order"         => "required",
+            "date"                      => "required",
+            "date_end"                  => "required",
+            "time_end"                  => "required",
+            "time_end"                  => "required"
+        ]);
+
+        if($validation->fails()){
+            return redirect()->back()->withErrors($validation);
+        }
+
+        $user = auth()->user();
+        $user->event()->find($id)->update($data);
+        return redirect()->back();
     }
 
     /**
@@ -80,8 +121,9 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        Event::find($id)->delete();
+        return redirect()->back();
     }
 }

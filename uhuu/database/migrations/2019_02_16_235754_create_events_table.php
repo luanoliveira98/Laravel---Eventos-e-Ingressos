@@ -21,9 +21,7 @@ class CreateEventsTable extends Migration
             $table->date('date_end');
             $table->time('time');
             $table->time('time_end');
-            $table->date('date_first_presentation');
-            $table->date('date_last_presentation');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('description');
             $table->enum('closed', ['N', 'S'])->default('N');
             $table->enum('sold', ['N', 'S'])->default('N');

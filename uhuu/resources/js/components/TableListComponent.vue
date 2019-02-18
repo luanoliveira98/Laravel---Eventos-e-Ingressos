@@ -17,6 +17,9 @@
                 </tr>
             </thead>
             <tbody>
+                <tr v-if="(list == '')" class="text-center font-weight-bold">
+                    <td colspan="6">Nenhum registro cadastrado!</td>
+                </tr>
                 <tr v-for="(item, index) in list" :key="item.index">
                     <td v-for="i in item" :key="i.index">{{i | dateFormat}}</td>
                     <td v-if="detail || edit || deleted">
@@ -24,29 +27,26 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
 
-                            <a v-if="detail && !modal" v-bind:href="detail">| Detail </a> 
-                            <modal-link-component v-if="detail && modal" v-bind:url="detail" v-bind:item="item" type="link" name="detail" title="| Detail" css=""></modal-link-component> 
+                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a> 
                             
-                            <a v-if="edit && !modal" v-bind:href="edit">| Edit |</a> 
-                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item" type="link" name="edit" title="| Edit |" css=""></modal-link-component>
+                            <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
+                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item" type="link" name="edit" title="| Editar |" css=""></modal-link-component>
                             
-                            <a v-on:click="executeForm(index)"> Delete |</a>
+                            <a v-on:click="executeForm(index)"> Deletar |</a>
                         </form>
                         <span v-if="!token">
-                            <a v-if="detail && !modal" v-bind:href="detail">| Detail </a> 
-                            <modal-link-component v-if="detail && modal" v-bind:url="detail" v-bind:item="item" type="link" name="detail" title="| Detail" css=""></modal-link-component>
+                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a> 
+
+                            <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
+                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Editar |" css=""></modal-link-component>
                             
-                            <a v-if="edit && !modal" v-bind:href="edit">| Edit |</a> 
-                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Edit |" css=""></modal-link-component>
-                            
-                            <a v-if="deleted" v-bind:href="deleted">Delete |</a>
+                            <a v-if="deleted" v-bind:href="deleted">Deletar |</a>
                         </span>
                         <span v-if="token && !deleted">
-                            <a v-if="detail && !modal" v-bind:href="detail">| Detail </a> 
-                            <modal-link-component v-if="detail && modal" v-bind:url="detail" v-bind:item="item" type="link" name="detail" title="| Detail" css=""></modal-link-component>
-                            
-                            <a v-if="edit && !modal" v-bind:href="edit">| Edit |</a> 
-                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Edit |" css=""></modal-link-component>
+                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a>
+
+                            <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
+                            <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Editar |" css=""></modal-link-component>
                         </span>
                     </td>
                 </tr>
