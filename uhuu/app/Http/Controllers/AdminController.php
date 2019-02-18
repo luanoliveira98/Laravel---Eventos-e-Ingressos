@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Event;
+
 class AdminController extends Controller
 {
     /**
@@ -22,15 +25,18 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {  
+        // Lista para formar o caminho de pão
         $listCrumbs = json_encode([
             ["title"=>"Dashboard", "url"=>""]
         ]);
+
+        // Lista contendo a contagem de itens cadastrados no BD
         $countTables = [
-            "events" => 1, 
-            "users"    => 10,
-            "admins"  => 10
+            "events" => Event::where('user_id', auth()->user()->id)->count(), 
+            "users"    => User::count(),
+            "admins"  => User::where('admin', 'S')->count()
         ];
-        return view('admin/home', compact('listCrumbs', 'countTables'));
+        return view('admin.dashboard.index', compact('listCrumbs', 'countTables'));
     }
 }

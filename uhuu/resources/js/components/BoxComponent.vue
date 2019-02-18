@@ -9,7 +9,7 @@
             <i v-bind:class="icon"></i>
         </div>
         <a v-bind:href="url" class="small-box-footer">
-            See more <i class="fa fa-arrow-circle-right"></i>
+            Veja mais <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
 </template>

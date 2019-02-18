@@ -12,9 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('site/home');
+    return view('site/home/index');
 });
 
 Auth::routes();
 
 Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+
+Route::middleware(['auth'])->prefix('dashboard')->namespace('Admin')->group(function () {
+    Route::resource('eventos', 'EventController');
+    Route::resource('usuarios', 'UserController')->middleware('can:isAdmin');
+    Route::resource('administradores', 'AdmController')->middleware('can:isAdmin');
+});

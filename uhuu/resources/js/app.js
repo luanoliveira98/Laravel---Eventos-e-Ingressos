@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'Vuex';
+Vue.use(Vuex);
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,10 +22,27 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+//Vuex
+
+const store = new Vuex.Store({
+    state:{
+        item:{teste:"opa funcionou"}
+    },
+    mutations:{
+        setItem(state, obj){
+            state.item = obj;
+        }
+    }
+});
+
 Vue.component('box-component', require('./components/BoxComponent.vue').default);
 Vue.component('crumbs-component', require('./components/CrumbsComponent.vue').default);
+Vue.component('form-component', require('./components/FormComponent.vue').default);
+Vue.component('modal-component', require('./components/modal/ModalComponent.vue').default);
+Vue.component('modal-link-component', require('./components/modal/ModalLinkComponent.vue').default);
 Vue.component('page-component', require('./components/PageComponent.vue').default);
 Vue.component('panel-component', require('./components/PanelComponent.vue').default);
+Vue.component('table-list-component', require('./components/TableListComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,5 +51,9 @@ Vue.component('panel-component', require('./components/PanelComponent.vue').defa
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
+    mounted: function(){
+        document.getElementById('app').style.display = "block";
+    }
 });
