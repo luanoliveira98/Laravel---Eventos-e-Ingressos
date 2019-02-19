@@ -10,9 +10,8 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'max_tickets_order', 'date', 'date_end', 'time', 'time_end', 'date_first_presentation',
-    'date_last_presentation', 'image', 'place_address', 'place_city', 'place_uf', 'description', 'tickets',
-    'closed', 'sold'];
+    protected $fillable = ['name', 'max_tickets_order', 'date', 'date_end', 'time', 'time_end', 'image', 
+    'place_name', 'place_city', 'place_uf', 'description', 'tickets', 'closed', 'sold'];
 
     protected $dates= ['deleted_at'];
 

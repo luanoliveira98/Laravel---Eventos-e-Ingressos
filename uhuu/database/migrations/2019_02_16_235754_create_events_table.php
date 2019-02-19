@@ -23,6 +23,9 @@ class CreateEventsTable extends Migration
             $table->time('time_end');
             $table->string('image')->nullable();
             $table->text('description');
+            $table->string('place_name');
+            $table->string('place_city');
+            $table->string('place_uf');
             $table->enum('closed', ['N', 'S'])->default('N');
             $table->enum('sold', ['N', 'S'])->default('N');
             $table->integer('user_id')->unsigned();

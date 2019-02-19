@@ -21,6 +21,9 @@ Route::get('/dashboard', 'AdminController@index')->name('dashboard');
 
 Route::middleware(['auth'])->prefix('dashboard')->namespace('Admin')->group(function () {
     Route::resource('eventos', 'EventController');
+    Route::get('eventos/detail/{id}', 'EventController@detail');
+    Route::resource('lotes', 'LotController');
+    Route::get('ingressos', 'TicketController')->name('ingressos.index');
     Route::resource('usuarios', 'UserController')->middleware('can:isAdmin');
     Route::resource('administradores', 'AdmController')->middleware('can:isAdmin');
 });

@@ -21,13 +21,13 @@
                     <td colspan="6">Nenhum registro cadastrado!</td>
                 </tr>
                 <tr v-for="(item, index) in list" :key="item.index">
-                    <td v-for="i in item" :key="i.index">{{i | dateFormat}}</td>
+                    <td v-for="i in item" :key="">{{i | dateFormat}}</td>
                     <td v-if="detail || edit || deleted">
                         <form v-bind:id="index" v-if="deleted && token" v-bind:action="deleted + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
 
-                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a> 
+                            <a v-if="detail" v-bind:href="detail+'/'+item.id">| Detalhe </a> 
                             
                             <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
                             <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item" type="link" name="edit" title="| Editar |" css=""></modal-link-component>
@@ -35,7 +35,7 @@
                             <a v-on:click="executeForm(index)"> Deletar |</a>
                         </form>
                         <span v-if="!token">
-                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a> 
+                            <a v-if="detail" v-bind:href="detail+'/'+item.id">| Detalhe </a> 
 
                             <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
                             <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Editar |" css=""></modal-link-component>
@@ -43,7 +43,7 @@
                             <a v-if="deleted" v-bind:href="deleted">Deletar |</a>
                         </span>
                         <span v-if="token && !deleted">
-                            <a v-if="detail" v-bind:href="detail+'/'">| Detalhe </a>
+                            <a v-if="detail" v-bind:href="detail+'/'+item.id">| Detalhe </a>
 
                             <a v-if="edit && !modal" v-bind:href="edit">| Editar |</a> 
                             <modal-link-component v-if="edit && modal" v-bind:url="edit" v-bind:item="item"  type="link" name="edit" title="| Editar |" css=""></modal-link-component>

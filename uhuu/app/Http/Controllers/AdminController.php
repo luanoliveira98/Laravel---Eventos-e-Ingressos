@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Event;
+use App\Ticket;
 
 class AdminController extends Controller
 {
@@ -31,11 +32,14 @@ class AdminController extends Controller
             ["title"=>"Dashboard", "url"=>""]
         ]);
 
+        $user = $user = auth()->user();
+
         // Lista contendo a contagem de itens cadastrados no BD
         $countTables = [
-            "events" => Event::where('user_id', auth()->user()->id)->count(), 
-            "users"    => User::count(),
-            "admins"  => User::where('admin', 'S')->count()
+            "events"  => Event::where('user_id', auth()->user()->id)->count(), 
+            "users"   => User::count(),
+            "admins"  => User::where('admin', 'S')->count(),
+            "tickets" => Ticket::where('user_id', $user->id)->count()
         ];
         return view('admin.dashboard.index', compact('listCrumbs', 'countTables'));
     }

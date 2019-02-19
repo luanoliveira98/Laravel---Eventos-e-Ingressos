@@ -19,7 +19,7 @@
         <panel-component title="Lista de Usuários">
             <crumbs-component v-bind:list="{{$listCrumbs}}"></crumbs-component>
             <table-list-component 
-                v-bind:titles="['#','Name', 'E-mail']"
+                v-bind:titles="['#','Nome', 'E-mail']"
                 v-bind:items="{{json_encode($listModel)}}"
                 order ="asc" orderCol="1"
                 create="#create" edit="/dashboard/usuarios/" deleted="/dashboard/usuarios/" token="{{ csrf_token() }}"

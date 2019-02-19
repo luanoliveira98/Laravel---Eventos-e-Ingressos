@@ -37,6 +37,7 @@ const store = new Vuex.Store({
 
 Vue.component('box-component', require('./components/BoxComponent.vue').default);
 Vue.component('crumbs-component', require('./components/CrumbsComponent.vue').default);
+Vue.component('details-component', require('./components/DetailsComponent.vue').default);
 Vue.component('form-component', require('./components/FormComponent.vue').default);
 Vue.component('modal-component', require('./components/modal/ModalComponent.vue').default);
 Vue.component('modal-link-component', require('./components/modal/ModalLinkComponent.vue').default);
