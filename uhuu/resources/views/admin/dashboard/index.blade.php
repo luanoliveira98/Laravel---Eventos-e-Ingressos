@@ -17,10 +17,10 @@
             <div class="col-md-4">
                 <box-component quantify="{{$countTables['admins']}}" title="Administradores" url="{{route('administradores.index')}}" color="orchid" icon="fas fa-user-shield"></box-component>
             </div>
-            <div class="col-md-4">
-                <box-component quantify="{{$countTables['tickets']}}" title="Ingressos" url="{{route('ingressos.index')}}" color="orchid" icon="fas fa-user-shield"></box-component>
-            </div>
             @endcan
+            <div class="col-md-4">
+                <box-component quantify="{{$countTables['tickets']}}" title="Ingressos" url="{{route('ingressos.index')}}" color="purple" icon="fas fa-ticket-alt"></box-component>
+            </div>
         </div>
     </panel-component>
 </page-component>

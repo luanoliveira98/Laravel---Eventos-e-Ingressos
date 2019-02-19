@@ -150,7 +150,7 @@
                 </div>
                 <div class="form-group col-12">
                     <label for="place_nameEdit">Endereço</label>
-                    <input type="text" name="place_name" id="place_nameEdit" v-model="$store.state.item.name" class="form-control">
+                    <input type="text" name="place_name" id="place_nameEdit" v-model="$store.state.item.place_name" class="form-control">
                 </div>
                 <div class="form-group col-6">
                     <label for="place_cityEdit">Cidade</label>

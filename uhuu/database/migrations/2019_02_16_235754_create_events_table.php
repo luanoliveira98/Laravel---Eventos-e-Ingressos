@@ -26,8 +26,6 @@ class CreateEventsTable extends Migration
             $table->string('place_name');
             $table->string('place_city');
             $table->string('place_uf');
-            $table->enum('closed', ['N', 'S'])->default('N');
-            $table->enum('sold', ['N', 'S'])->default('N');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

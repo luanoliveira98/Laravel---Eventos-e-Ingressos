@@ -9,12 +9,16 @@
         <div v-for="field in fields" :key="field['key']" :class="'col-'+field['col']">
             <span class="font-weight-bold">{{field['name']}}: </span>{{field['value'] | dateFormat}}
         </div>
+        <div class="mt-5">
+            <modal-link-component v-if="tickets && !guest" type="link" name="add" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+            <modal-link-component v-if="tickets && guest" type="link" name="login" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['image', 'description', 'fields'],
+        props: ['image', 'description', 'fields', 'tickets', 'guest'],
         filters:{
             dateFormat: function(value){
                 if(!value) return '';

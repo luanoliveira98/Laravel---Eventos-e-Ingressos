@@ -45,21 +45,25 @@ class Event extends Model
         if($search){
             return  DB::table('events')
                     ->join('users','users.id','events.user_id')
-                    ->select('events.id', 'events.name', 'events.description' ,'users.name as author', 'events.date')
-                    ->whereNull('deleted_at')
-                    ->whereDate('date', '<=', date('Y-m-d'))
+                    ->select('events.id', 'events.name', 'events.description' , 'events.date', 'events.date_end', 'events.place_name', 
+                    'events.place_city', 'events.place_uf', 'users.name as organization', 'events.image', 'events.time', 'events.time_end')
+                    ->whereNull('events.deleted_at')
+                    ->whereDate('date_end', '>=', date('Y-m-d'))
                     ->where(function($query) use ($search){
-                        $query->orWhere('name', 'like', '%'.$search.'%')
-                              ->orWhere('description', 'like', '%'.$search.'%');
+                        $query->orWhere('events.name', 'like', '%'.$search.'%')
+                              ->orWhere('description', 'like', '%'.$search.'%')
+                              ->orWhere('place_name', 'like', '%'.$search.'%')
+                              ->orWhere('place_city', 'like', '%'.$search.'%');
                     })
                     ->orderBy('date', 'desc')
                     ->paginate($paginate);
         } else {
             return  DB::table('events')
                     ->join('users','users.id','events.user_id')
-                    ->select('events.id', 'events.name', 'events.description' ,'users.name as author', 'events.date')
-                    ->whereNull('deleted_at')
-                    ->whereDate('date', '<=', date('Y-m-d'))
+                    ->select('events.id', 'events.name', 'events.description' , 'events.date', 'events.date_end', 'events.place_name', 
+                    'events.place_city', 'events.place_uf', 'users.name as organization', 'events.image', 'events.time', 'events.time_end')
+                    ->whereNull('events.deleted_at')
+                    ->whereDate('date_end', '>=', date('Y-m-d'))
                     ->orderBy('date', 'desc')
                     ->paginate($paginate);
         }    

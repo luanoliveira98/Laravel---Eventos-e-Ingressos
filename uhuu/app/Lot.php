@@ -14,18 +14,28 @@ class Lot extends Model
 
     protected $dates= ['deleted_at'];
 
-    public function event()
-    {
-        return $this->belongsTo('App\Event');
-    }
-
+    /**
+     * Função para listar todos os lotes de ingressos de um evento de acordo com seu "id"
+     * @param  Integer  $id  Chave de Indetificação do Evento
+     * @param  Integer  $paginate  Quantidade de lotes por página
+     */
     public static function list($id, $paginate){
         return  DB::table('lots')
                 ->leftJoin('tickets','lots.id','tickets.lots_id')
-                ->select(DB::raw('lots.id, lots.price, lots.tickets, IF(SUM(tickets.quantify) is NULL, "0", tickets.quantify) AS quantify'))
+                ->select(DB::raw('lots.id, lots.price, lots.tickets, SUM(tickets.quantify) AS quantify'))
                 ->whereNull('deleted_at')
                 ->where('lots.event_id', $id)
-                ->groupBy('tickets.id')
+                ->groupBy('lots.id')
                 ->paginate($paginate); 
+    }
+
+    public static function listSite($id){
+        return  DB::table('lots')
+                ->leftJoin('tickets','lots.id','tickets.lots_id')
+                ->select(DB::raw('lots.id, lots.price, lots.tickets, lots.half_entrance, SUM(tickets.quantify) AS quantify'))
+                ->whereNull('deleted_at')
+                ->where('lots.event_id', $id) 
+                ->groupBy('lots.id')
+                ->get();
     }
 }

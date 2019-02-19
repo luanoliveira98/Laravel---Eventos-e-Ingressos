@@ -6,7 +6,7 @@
                 <modal-link-component v-if="create && modal" type="link" name="add" title="Criar" css=""></modal-link-component>
             </div>
             <div class="form-group">
-                <input type="search" placeholder="Search" class="form-control" v-model="search">
+                <input type="search" placeholder="Buscar" class="form-control" v-model="search">
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -21,7 +21,7 @@
                     <td colspan="6">Nenhum registro cadastrado!</td>
                 </tr>
                 <tr v-for="(item, index) in list" :key="item.index">
-                    <td v-for="i in item" :key="">{{i | dateFormat}}</td>
+                    <td v-for="i in item" :key="i">{{i | dateFormat}}</td>
                     <td v-if="detail || edit || deleted">
                         <form v-bind:id="index" v-if="deleted && token" v-bind:action="deleted + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">

@@ -60,16 +60,16 @@ class EventController extends Controller
             "place_name"                => "required",
             "place_city"                => "required",
             "place_uf"                  => "required",
-            "image"                     => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+            "image"                     => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
         ]);
         
         if($validation->fails()){
             return redirect()->back()->withErrors($validation)->withInput();
         }
-        
-        dd($data["image"]);
-        $path = $request->file('image')->store('images', 'public');
-        $data["image"] = $path;
+        if(isset($data["image"])){
+            $path = $request->file('image')->store('images', 'public');
+            $data["image"] = $path;
+        }        
 
         $user = auth()->user();
         $user->event()->create($data);
@@ -145,7 +145,7 @@ class EventController extends Controller
         }
 
         // Verifica se foi enviada nova imagem
-        if ($data["image"] != null){
+        if (isset($data["image"])){
             $event = Event::find($id);
             $image = $event->image;
             Storage::delete('public/'.$image);//Deleta antiga imagem

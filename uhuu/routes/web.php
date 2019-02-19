@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('site/home/index');
-});
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/eventos/{id}/{title?}', 'HomeController@show')->name('eventos');
 
 Auth::routes();
 
@@ -23,7 +23,7 @@ Route::middleware(['auth'])->prefix('dashboard')->namespace('Admin')->group(func
     Route::resource('eventos', 'EventController');
     Route::get('eventos/detail/{id}', 'EventController@detail');
     Route::resource('lotes', 'LotController');
-    Route::get('ingressos', 'TicketController')->name('ingressos.index');
+    Route::resource('ingressos', 'TicketController');
     Route::resource('usuarios', 'UserController')->middleware('can:isAdmin');
     Route::resource('administradores', 'AdmController')->middleware('can:isAdmin');
 });
