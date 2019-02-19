@@ -33,7 +33,7 @@ class EventsTableSeeder extends Seeder
             'date_end'          => '2019-02-17',
             'time'              => '12:45:00',
             'time_end'          => '18:00:00',
-            'image'             => 'images/j2qoc1TRXI13C5wRBAxiST8eB9ZllQSg0En0V5hG.jpeg',
+            'image'             => 'images/yjkg29aRqpXIaMvoVZ0VEGNuCFZccyReY7H0quAa.jpeg',
             'description'       => 'Festa beneficiente para ajudar a ONG dos gatos de rua.',
             'place_name'        => 'Shopping Grande Circular',
             'place_city'        => 'Manaus',
