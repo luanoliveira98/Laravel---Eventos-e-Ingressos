@@ -7,7 +7,7 @@
             <p class="h3 text-center">{{title}}</p>
             <p>{{description}}</p>
             <p><span class="font-weight-bold">Local: </span>{{place}}</p>
-            <p><a :href="link" class="btn btn-primary" role="button">Ler mais</a></p>
+            <p><a :href="link" class="btn btn-primary" role="button">Mais detalhes</a></p>
         </div>
         </div>
     </div>

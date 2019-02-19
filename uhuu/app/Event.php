@@ -28,7 +28,7 @@ class Event extends Model
                     ->join('users','users.id','events.user_id')
                     ->select('events.id', 'events.name', 'events.description' ,'users.name', 'events.date')
                     ->whereNull('deleted_at')
-                    ->orderBy('events.id', 'desc')
+                    ->orderBy('date', 'asc')
                     ->paginate($paginate); 
         }
             return  DB::table('events')
@@ -36,7 +36,7 @@ class Event extends Model
                     ->select('events.id', 'events.name', 'events.description' ,'users.name', 'events.date')
                     ->whereNull('deleted_at')
                     ->where('events.user_id', $user->id)
-                    ->orderBy('events.id', 'desc')
+                    ->orderBy('date', 'asc')
                     ->paginate($paginate); 
     }
 
@@ -54,7 +54,7 @@ class Event extends Model
                               ->orWhere('place_name', 'like', '%'.$search.'%')
                               ->orWhere('place_city', 'like', '%'.$search.'%');
                     })
-                    ->orderBy('date', 'desc')
+                    ->orderBy('date', 'asc')
                     ->paginate($paginate);
         } else {
             return  DB::table('events')
@@ -63,7 +63,7 @@ class Event extends Model
                     'events.place_city', 'events.place_uf', 'users.name as organization', 'events.image', 'events.time', 'events.time_end')
                     ->whereNull('events.deleted_at')
                     ->whereDate('date_end', '>=', date('Y-m-d'))
-                    ->orderBy('date', 'desc')
+                    ->orderBy('date', 'asc')
                     ->paginate($paginate);
         }    
     }

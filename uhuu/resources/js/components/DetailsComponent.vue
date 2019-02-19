@@ -11,8 +11,8 @@
         </div>
         <div class="mt-5">
             <modal-link-component v-if="tickets && !guest && !sold" type="link" name="add" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
-            <modal-link-component v-if="tickets && guest && !sold" type="link" name="login" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
-            <a href="#" v-if="sold" class="btn btn-danger">Ingressos Esgotados</a>
+            <modal-link-component v-if="tickets && guest" type="link" name="login" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+            <a href="#" v-if="sold && !guest" class="btn btn-danger">Ingressos Esgotados</a>
         </div>
     </div>
 </template>

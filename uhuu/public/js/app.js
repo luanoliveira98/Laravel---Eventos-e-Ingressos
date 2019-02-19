@@ -39126,7 +39126,7 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _vm.tickets && _vm.guest && !_vm.sold
+          _vm.tickets && _vm.guest
             ? _c("modal-link-component", {
                 attrs: {
                   type: "link",
@@ -39137,7 +39137,7 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _vm.sold
+          _vm.sold && !_vm.guest
             ? _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
                 _vm._v("Ingressos Esgotados")
               ])
@@ -39209,7 +39209,7 @@ var render = function() {
                 staticClass: "btn btn-primary",
                 attrs: { href: _vm.link, role: "button" }
               },
-              [_vm._v("Ler mais")]
+              [_vm._v("Mais detalhes")]
             )
           ])
         ])

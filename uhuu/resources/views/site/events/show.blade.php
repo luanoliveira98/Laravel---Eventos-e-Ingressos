@@ -61,12 +61,14 @@
                     <button class="btn btn-info" form="formAdd">Comprar</button>
                 </span>
             </modal-component>
-    
+        @endif
+            
+        @guest
             <modal-component name="login" title="Login necessário">
                 <div>
                     <p>Para comprar ingressos é preciso realizar login. <a href="{{route('login')}}">Clique aqui</a>!</p>
                     <p>Caso não possua uma conta registre uma <a href="{{route('register')}}">clicando aqui</a>! É fácil e rápido!</p>   
                 </div>
             </modal-component>
-        @endif
+        @endguest            
 @endsection
