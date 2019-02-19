@@ -70,6 +70,11 @@ class HomeController extends Controller
                 break;
             }
         }
+
+        // Se nenhum lote tiver ingressos disponíveis é setado o valor nulo
+        if($sold){
+            $lot = null;
+        }
         return view('site.events.show', compact('event', 'lot'));
     }
 

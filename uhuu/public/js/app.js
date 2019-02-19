@@ -2870,8 +2870,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['image', 'description', 'fields', 'tickets', 'guest'],
+  props: ['image', 'description', 'fields', 'tickets', 'guest', 'sold'],
   filters: {
     dateFormat: function dateFormat(value) {
       if (!value) return '';
@@ -39114,7 +39115,7 @@ var render = function() {
         "div",
         { staticClass: "mt-5" },
         [
-          _vm.tickets && !_vm.guest
+          _vm.tickets && !_vm.guest && !_vm.sold
             ? _c("modal-link-component", {
                 attrs: {
                   type: "link",
@@ -39125,7 +39126,7 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _vm.tickets && _vm.guest
+          _vm.tickets && _vm.guest && !_vm.sold
             ? _c("modal-link-component", {
                 attrs: {
                   type: "link",
@@ -39134,6 +39135,12 @@ var render = function() {
                   css: "btn btn-primary"
                 }
               })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.sold
+            ? _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
+                _vm._v("Ingressos Esgotados")
+              ])
             : _vm._e()
         ],
         1

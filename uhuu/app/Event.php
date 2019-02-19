@@ -23,7 +23,6 @@ class Event extends Model
     public static function list($paginate){
 
         $user = auth()->user();
-
         if($user->admin == "S"){
             return  DB::table('events')
                     ->join('users','users.id','events.user_id')

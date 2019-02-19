@@ -10,15 +10,16 @@
             <span class="font-weight-bold">{{field['name']}}: </span>{{field['value'] | dateFormat}}
         </div>
         <div class="mt-5">
-            <modal-link-component v-if="tickets && !guest" type="link" name="add" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
-            <modal-link-component v-if="tickets && guest" type="link" name="login" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+            <modal-link-component v-if="tickets && !guest && !sold" type="link" name="add" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+            <modal-link-component v-if="tickets && guest && !sold" type="link" name="login" title="Comprar Ingressos" css="btn btn-primary"></modal-link-component>
+            <a href="#" v-if="sold" class="btn btn-danger">Ingressos Esgotados</a>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['image', 'description', 'fields', 'tickets', 'guest'],
+        props: ['image', 'description', 'fields', 'tickets', 'guest', 'sold'],
         filters:{
             dateFormat: function(value){
                 if(!value) return '';

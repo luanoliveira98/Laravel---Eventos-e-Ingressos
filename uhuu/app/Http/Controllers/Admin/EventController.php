@@ -26,7 +26,15 @@ class EventController extends Controller
         ]);
 
         $user = auth()->user();
-        $listModel = Event::select('id', 'name', 'date')->where('user_id', $user->id)->paginate(10);
+
+        // Se o usuário for admin irá listar todos os eventos cadastrados
+        if($user->admin == 'S'){
+            $listModel = Event::select('id', 'name', 'date')->paginate(10);
+        }
+        // Caso contrário ira listar apenas os eventos do usuário
+        else {
+            $listModel = Event::select('id', 'name', 'date')->where('user_id', $user->id)->paginate(10);
+        }
         return view('admin.events.index', compact('listCrumbs', 'listModel'));
     }
 

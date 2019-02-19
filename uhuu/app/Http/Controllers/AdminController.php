@@ -32,15 +32,27 @@ class AdminController extends Controller
             ["title"=>"Dashboard", "url"=>""]
         ]);
 
-        $user = $user = auth()->user();
+        $user = auth()->user();
 
         // Lista contendo a contagem de itens cadastrados no BD
-        $countTables = [
-            "events"  => Event::where('user_id', auth()->user()->id)->count(), 
-            "users"   => User::count(),
-            "admins"  => User::where('admin', 'S')->count(),
-            "tickets" => Ticket::where('user_id', $user->id)->count()
-        ];
+        // Se o usuário for admin irá contar todos os eventos cadastrados
+        if($user->admin == 'S'){
+            $countTables = [
+                "events"  => Event::count(), 
+                "users"   => User::count(),
+                "admins"  => User::where('admin', 'S')->count(),
+                "tickets" => Ticket::where('user_id', $user->id)->count()
+            ];
+        } 
+        // Caso não seja admin ira contar apenas os seus eventos cadastrados
+        else {
+            $countTables = [
+                "events"  => Event::where('user_id', auth()->user()->id)->count(), 
+                "users"   => User::count(),
+                "admins"  => User::where('admin', 'S')->count(),
+                "tickets" => Ticket::where('user_id', $user->id)->count()
+            ];
+        }
         return view('admin.dashboard.index', compact('listCrumbs', 'countTables'));
     }
 }
